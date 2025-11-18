@@ -1,0 +1,83 @@
+.checkout-grid {
+    width: 100vw;
+    min-height: 85vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "address order";
+}
+
+.address-container {
+    grid-area: address;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.all-address {
+    width: 90%;
+    height: max-content;
+    box-shadow: 0 0 10px var(--primary-color);
+    padding: 0 2rem;
+    position: sticky;
+    top: 10rem;
+}
+
+.address-data {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 2rem;
+}
+
+.order-details {
+    grid-area: order;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coupon {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+    border: 2px solid var(--border-black);
+    display: none;
+}
+
+.order-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coupon-btn {
+    position: absolute;
+    right: 3rem
+}
+
+.current:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width:480px) {
+    .checkout-grid {
+        width: 100vw;
+        min-height: 90vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+            "address"
+            "order";
+    }
+
+    .address-container {
+
+        justify-content: center;
+        align-items: flex-start;
+    }
+}

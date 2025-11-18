@@ -1,0 +1,134 @@
+.navigation-bar {
+    z-index: 5;
+    position: sticky;
+    top: 0;
+}
+
+.navigation-bar .btn{
+    height: 4rem;
+    margin: auto;
+    margin-left: 2rem;
+}
+
+.logo img {
+    padding-right: 0;
+}
+
+.search-item input {
+    color: var(--white-text-color)
+}
+
+.search-item input::placeholder {
+    color: var(--white-text-color)
+}
+
+i:hover{
+    cursor: pointer;
+}
+
+.burger-menu,
+.profile,
+.filter-bar,
+.responsive-mode,
+.account {
+    display: none;
+}
+
+.filter-bar {
+    position: absolute;
+    top: 9rem;
+    right: 0;
+    height: max-content;
+    background-color: var(--light-black-background);
+    color: var(--white-text-color);
+    width: 25rem;
+    z-index: 10;
+    padding: 1rem;
+}
+
+.account {
+    position: absolute;
+    top: 9rem;
+    right: 7rem;
+    display: flex;
+    flex-direction: column;
+    width: 8rem;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-black-background);
+}
+
+
+@media screen and (max-width:480px) {
+    .brand-text {
+        display: none;
+    }
+
+    .search-item {
+        display: none;
+    }
+
+    .account-data {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        margin-right: 2rem;
+    }
+
+    .filter-bar,
+    .profile,
+    .responsive-mode {
+        display: block;
+    }
+
+    .responsive-navbar {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .responsive-navbar img {
+        margin-top: 1.2rem;
+    }
+
+}
+
+@media screen and (max-width:820px) {
+
+    .search-item {
+        display: none;
+    }
+
+    .account-data {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        margin-right: 2rem;
+    }
+
+    .filter-bar,
+    .profile,
+    .responsive-mode {
+        display: block;
+    }
+
+    .responsive-navbar {
+        width: 30%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .account {
+        right: 8rem;
+        padding: 2rem 0;
+    }
+
+}
