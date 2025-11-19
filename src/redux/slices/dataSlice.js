@@ -1,12 +1,15 @@
+// src/store/dataSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getCartlist,
   getCategories,
   getProducts,
-  getWishlist,
-} from "../../services";
+  getWishlist as apiGetWishlist,
+  addWishlist as apiAddWishlist,
+  deleteWishlist as apiDeleteWishlist,
+} from "../../services"; // adjust path as needed
 
-// --------------- API CALLS ----------------
+// existing loadInitialData (unchanged)...
 export const loadInitialData = createAsyncThunk(
   "data/loadInitialData",
   async (token, { dispatch }) => {
@@ -20,9 +23,34 @@ export const loadInitialData = createAsyncThunk(
       const cartResponse = await getCartlist({ encodedToken: token });
       dispatch(setCart(cartResponse.data.cart));
 
-      const wishlistResponse = await getWishlist({ encodedToken: token });
+      const wishlistResponse = await apiGetWishlist({ encodedToken: token });
       dispatch(setWishlist(wishlistResponse.data.wishlist));
     }
+  }
+);
+
+// --------------- Wishlist thunks ----------------
+export const fetchWishlist = createAsyncThunk(
+  "data/fetchWishlist",
+  async (token) => {
+    const res = await apiGetWishlist({ encodedToken: token });
+    return res.data.wishlist;
+  }
+);
+
+export const addWishlistItem = createAsyncThunk(
+  "data/addWishlistItem",
+  async ({ product, token }) => {
+    const res = await apiAddWishlist({ product, encodedToken: token });
+    return res.data.wishlist;
+  }
+);
+
+export const removeWishlistItem = createAsyncThunk(
+  "data/removeWishlistItem",
+  async ({ productId, token }) => {
+    const res = await apiDeleteWishlist({ productId, encodedToken: token });
+    return res.data.wishlist;
   }
 );
 
@@ -34,13 +62,14 @@ const dataSlice = createSlice({
     cart: [],
     wishlist: [],
     categories: [],
-    selectedCategories: [], // category filter
-    seasonalFilter: null, // 'alltime' | 'summer' | 'winter'
+    selectedCategories: [],
+    seasonalFilter: null,
     price: 1500,
     rating: 0,
     sortBy: null,
     loading: false,
     searched: [],
+    loadText: "",
   },
 
   reducers: {
@@ -50,8 +79,21 @@ const dataSlice = createSlice({
     setCategories: (state, action) => {
       state.categories = action.payload;
     },
-
-    // CATEGORY FILTER (toggle)
+    setCart: (state, action) => {
+      state.cart = action.payload;
+    },
+    setWishlist: (state, action) => {
+      state.wishlist = action.payload;
+    },
+    setPrice: (state, action) => {
+      state.price = Number(action.payload);
+    },
+    setRating: (state, action) => {
+      state.rating = action.payload;
+    },
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload;
+    },
     setCategoryFilter: (state, action) => {
       const category = action.payload;
       if (state.selectedCategories.includes(category)) {
@@ -62,34 +104,12 @@ const dataSlice = createSlice({
         state.selectedCategories.push(category);
       }
     },
-
-    // SEASONAL FILTER (single select)
     setSeasonalFilter: (state, action) => {
-      state.seasonalFilter = action.payload; // 'alltime' | 'summer' | 'winter'
+      state.seasonalFilter = action.payload;
     },
-
-    setCart: (state, action) => {
-      state.cart = action.payload;
-    },
-    setWishlist: (state, action) => {
-      state.wishlist = action.payload;
-    },
-    setPrice: (state, action) => {
-      state.price = Number(action.payload); // Make sure price is a number
-    },
-    setRating: (state, action) => {
-      state.rating = action.payload;
-    },
-    setSortBy: (state, action) => {
-      state.sortBy = action.payload;
-    },
-
-    // SET SELECTED CATEGORIES (for category click)
     setSelectedCategories: (state, action) => {
       state.selectedCategories = action.payload;
     },
-
-    // RESET ALL FILTERS
     clearFilters: (state) => {
       state.price = 1500;
       state.rating = 0;
@@ -97,15 +117,55 @@ const dataSlice = createSlice({
       state.selectedCategories = [];
       state.seasonalFilter = null;
     },
+    // optional: local UI loading helpers
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    setLoadText: (state, action) => {
+      state.loadText = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
-    builder.addCase(loadInitialData.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(loadInitialData.fulfilled, (state) => {
-      state.loading = false;
-    });
+    builder
+      .addCase(loadInitialData.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loadInitialData.fulfilled, (state) => {
+        state.loading = false;
+      })
+      // fetchWishlist
+      .addCase(fetchWishlist.fulfilled, (state, action) => {
+        state.wishlist = action.payload;
+      })
+      // addWishlistItem
+      .addCase(addWishlistItem.pending, (state) => {
+        state.loadText = "Adding to wishlist...";
+        state.loading = true;
+      })
+      .addCase(addWishlistItem.fulfilled, (state, action) => {
+        state.wishlist = action.payload;
+        state.loadText = "";
+        state.loading = false;
+      })
+      .addCase(addWishlistItem.rejected, (state) => {
+        state.loadText = "";
+        state.loading = false;
+      })
+      // removeWishlistItem
+      .addCase(removeWishlistItem.pending, (state) => {
+        state.loadText = "Removing from wishlist...";
+        state.loading = true;
+      })
+      .addCase(removeWishlistItem.fulfilled, (state, action) => {
+        state.wishlist = action.payload;
+        state.loadText = "";
+        state.loading = false;
+      })
+      .addCase(removeWishlistItem.rejected, (state) => {
+        state.loadText = "";
+        state.loading = false;
+      });
   },
 });
 
@@ -122,6 +182,8 @@ export const {
   setSeasonalFilter,
   setSelectedCategories,
   clearFilters,
+  setLoading,
+  setLoadText,
 } = dataSlice.actions;
 
 // ---------- EXPORT REDUCER ----------

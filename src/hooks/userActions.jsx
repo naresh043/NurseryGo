@@ -1,108 +1,91 @@
+// src/hooks/useUserActions.js
+import { useDispatch } from "react-redux";
+import { useToast } from "./useToast";
 import {
-  getWishlist,
   getCartlist,
   addCartlist,
   editCartlist,
-  addWishlist,
-  deleteWishlist,
   deleteCartlist,
 } from "../../src/services";
-import { useDispatch, useSelector } from "react-redux";
-import { useToast } from "./useToast";
+
+import {
+  addWishlistItem,
+  removeWishlistItem,
+  setLoadText,
+  setLoading,
+  setCart,  // IMPORTANT
+} from "../redux/slices/dataSlice";
 
 export const useUserActions = () => {
   const dispatch = useDispatch();
-  const { setLoading, setLoadText } = useSelector((state) => state.data);
-  console.log(setLoading)
   const { successToast } = useToast();
   const token = localStorage.getItem("login");
 
+  // ------------ WISHLIST -----------------
   async function addWish(product) {
-    // setLoading(true);
-    // setLoadText("Adding...");
-    const responseWishlist = await getWishlist({ encodedToken: token });
-    if (
-      !responseWishlist.data.wishlist.find((item) => item._id === product._id)
-    ) {
-      const res = await addWishlist({ product: product, encodedToken: token });
-      dispatch({ type: "LOAD_WISHLIST", payload: res.data.wishlist });
-    }
-    // setLoadText("");
-    // setLoading(false);
+    if (!token) return;
+    await dispatch(addWishlistItem({ product, token })).unwrap();
     successToast(`${product.title} added to Wishlist...`);
   }
 
-  async function deleteWish(productid) {
-    setLoading(true);
-    // setLoadText("Removing...");
-    const responseWishlist = await deleteWishlist({
-      productId: productid,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_WISHLIST",
-      payload: responseWishlist.data.wishlist,
-    });
-    setLoadText("");
-    setLoading(false);
+  async function deleteWish(productId) {
+    if (!token) return;
+    await dispatch(removeWishlistItem({ productId, token })).unwrap();
+    successToast("Removed from Wishlist");
   }
 
+  // ------------ CART -----------------
   async function addCart(product) {
-    setLoading(true);
-    setLoadText("Adding...");
+    dispatch(setLoading(true));
+    dispatch(setLoadText("Adding..."));
+
     const responseCart = await getCartlist({ encodedToken: token });
+
     if (!responseCart.data.cart.find((item) => item._id === product._id)) {
-      const res = await addCartlist({ product: product, encodedToken: token });
-      dispatch({ type: "LOAD_CART", payload: res.data.cart });
+      const res = await addCartlist({ product, encodedToken: token });
+      dispatch(setCart(res.data.cart)); // FIX
     } else {
       const res = await editCartlist({
         productId: product._id,
         encodedToken: token,
         type: "increment",
       });
-      dispatch({ type: "LOAD_CART", payload: res.data.cart });
+      dispatch(setCart(res.data.cart)); // FIX
     }
-    setLoadText("");
-    setLoading(false);
+
+    dispatch(setLoadText(""));
+    dispatch(setLoading(false));
     successToast(`${product.title} added to Cart...`);
   }
 
-  async function deleteCart(productid) {
-    setLoading(true);
-    setLoadText("Removing...");
-    const responseCartlist = await deleteCartlist({
-      productId: productid,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_CART", payload: responseCartlist.data.cart });
-    setLoadText("");
-    setLoading(false);
+  async function deleteCart(productId) {
+    dispatch(setLoading(true));
+    dispatch(setLoadText("Removing..."));
+
+    const res = await deleteCartlist({ productId, encodedToken: token });
+    dispatch(setCart(res.data.cart)); // FIX
+
+    dispatch(setLoadText(""));
+    dispatch(setLoading(false));
   }
 
   async function incrementCart(product) {
-    const responseCart = await editCartlist({
+    const res = await editCartlist({
       productId: product._id,
       encodedToken: token,
       type: "increment",
     });
-    dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
+    dispatch(setCart(res.data.cart));
   }
 
   async function decrementCart(product) {
-    const responseCart = await editCartlist({
+    const res = await editCartlist({
       productId: product._id,
       encodedToken: token,
       type: "decrement",
     });
-    dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
+    dispatch(setCart(res.data.cart));
   }
 
-  return {
-    addWish,
-    deleteWish,
-    addCart,
-    deleteCart,
-    incrementCart,
-    decrementCart,
-  };
+  return { addWish, deleteWish, addCart, deleteCart, incrementCart, decrementCart };
 };

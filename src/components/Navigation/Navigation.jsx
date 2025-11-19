@@ -42,11 +42,11 @@ export default function Navigation() {
         <section className="brand logo">
           <Link to="/">
             <img
-              src="https://i.postimg.cc/66zZLP4N/freshbuy-new.png"
+              src="https://res.cloudinary.com/dv5tozhs3/image/upload/v1763554517/product-cart-vector-icon-design-shopping-cart-colorful-icon-flat-icon_462371-2357-removebg-preview_qsyadq.png"
               alt="logo"
             />
           </Link>
-          <span className="brand-text">FreshBuy</span>
+          <span className="brand-text">NurseryGo</span>
           <button
             className="btn btn-outline-primary primary-text"
             onClick={() => navigate("/productlist")}

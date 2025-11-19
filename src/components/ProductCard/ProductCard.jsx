@@ -34,6 +34,7 @@ const ProductCard = ({ product }) => {
           }}
         />
       </div>
+
       <div className="card-details card-details-vertical">
         <h2 className="card-heading">
           {product.title}
@@ -54,6 +55,7 @@ const ProductCard = ({ product }) => {
             )}
           </span>
         </h2>
+
         <div className="rating text-sm">
           <span className="rating-value">
             {product.rating}
@@ -61,6 +63,7 @@ const ProductCard = ({ product }) => {
           </span>
           (<span className="rating-number">2333</span>)
         </div>
+
         <h4 className="product-price">
           Rs.{product.price}/kg{" "}
           <span className="original-price text-strike-through">
@@ -68,17 +71,16 @@ const ProductCard = ({ product }) => {
           </span>
           <span className="discount-percentage">{product.discount}% off</span>
         </h4>
+
+        {/* CART BUTTON LOGIC */}
         {product.outofstock ? (
-          <button
-            className="btn btn-icon-text-primary-disabled out-of-stock-button"
-            disabled="disabled"
-          >
+          <button className="btn btn-icon-text-primary-disabled" disabled>
             <span className="btn-icon">
               <i className="fa fa-shopping-basket margin-r"></i>
             </span>
             Add to Basket
           </button>
-        ) : data.cart.some((item) => item.title === product.title) ? (
+        ) : data.cart.some((item) => item._id === product._id) ? (
           <Link to="/cart">
             <button className="btn btn-icon-text-primary-outline">
               <span className="btn-icon">
@@ -92,7 +94,7 @@ const ProductCard = ({ product }) => {
             className="btn btn-icon-text-primary-outline"
             onClick={() => {
               token
-                ? addCart(product, token)
+                ? addCart(product) // NO NEED TO PASS TOKEN HERE
                 : navigate("/login", { state: { from: location } });
             }}
           >
@@ -103,6 +105,7 @@ const ProductCard = ({ product }) => {
           </button>
         )}
       </div>
+
       {product.offer && (
         <div className="badge badge-offer 20-off">
           <span></span>
