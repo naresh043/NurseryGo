@@ -1,12 +1,13 @@
 import "./checkout.css";
-import { useData } from "../../contexts";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "../../hooks";
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const { data, dispatch } = useData();
+  const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
   const { warningToast, successToast } = useToast();
   const [deliveryAddress, setDeliveryAddress] = useState();
 

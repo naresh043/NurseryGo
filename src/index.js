@@ -5,20 +5,17 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "./redux/store";
+import { Provider } from "react-redux";
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
+    <Provider store={store}>
       <Router>
-        <AuthProvider>
-          <DataProvider>
-            <App />
-          </DataProvider>
-        </AuthProvider>
+        <App />
       </Router>
-    </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

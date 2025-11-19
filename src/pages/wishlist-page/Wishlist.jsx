@@ -1,10 +1,11 @@
 import "./wishlist.css";
-import { useData } from "../../contexts";
+import { useSelector } from "react-redux";
 import { useUserActions } from "../../hooks";
 import { Loader } from "../../components";
 
 export default function Wishlist() {
-  const { data, loading, loadText } = useData();
+  const data = useSelector((state) => state.data);
+  const { loading, loadText } = data;
   const { addCart, deleteWish } = useUserActions();
 
   return loading ? (

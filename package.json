@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^2.10.1",
+    "axios": "^1.13.2",
     "dayjs": "^1.11.0",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
-    "miragejs": "^0.1.43",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
     "react-toastify": "^9.0.1",
@@ -34,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "miragejs": "^0.1.48"
   }
 }

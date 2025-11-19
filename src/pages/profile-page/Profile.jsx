@@ -1,12 +1,12 @@
 import "./profile.css";
-import { useAuth, useData } from "../../contexts";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../hooks";
 
 export default function Profile() {
-  const { userData, setToken } = useAuth();
+  const { userData, setToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const { dispatch } = useData();
+  const dispatch = useDispatch();
   const { successToast } = useToast();
 
   const logoutHandler = () => {

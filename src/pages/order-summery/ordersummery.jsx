@@ -1,10 +1,10 @@
 import "./ordersummery.css";
-import { useData } from "../../contexts";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useUserActions } from "../../hooks";
 
 export default function OrderSummary() {
-  const { data } = useData();
+  const data = useSelector((state) => state.data);
   const { deleteCart } = useUserActions();
 
   useEffect(() => {

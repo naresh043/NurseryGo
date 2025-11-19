@@ -1,13 +1,15 @@
 import "./singleproduct.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useData } from "../../contexts";
+import { useSelector } from "react-redux";
 import { useUserActions } from "../../hooks";
 
 export const SingleProduct = ({ product }) => {
-  const { data } = useData();
+  const data = useSelector((state) => state.data);
   const { addWish, deleteWish, addCart } = useUserActions();
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
+
+  console.log(product,"22222222")
 
   const description = data.categories.map((i) =>
     i.categoryName === product.categoryName ? i.description : ""

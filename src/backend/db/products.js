@@ -8,7 +8,7 @@ export const products = [
   {
     "_id": "1",
     "title": "Air Purifier Money Plant with pot",
-    "categoryName": "Air Purifier",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 241,
     "discount": 29,
@@ -20,7 +20,7 @@ export const products = [
   {
     "_id": "2",
     "title": "Money Plant, Scindapsus (Pack of 3)",
-    "categoryName": "Money Plant",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 111,
     "discount": 20,
@@ -32,7 +32,7 @@ export const products = [
   {
     "_id": "3",
     "title": "Peace Lily, Spathiphyllum - Plant",
-    "categoryName": "Peace Lily",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 885,
     "discount": 15,
@@ -44,7 +44,7 @@ export const products = [
   {
     "_id": "4",
     "title": "Top 5 Easiest to Grow Plants",
-    "categoryName": "Combo Pack",
+    "categoryName": "Combo",
     "season": "AllTime",
     "rating": 31,
     "discount": 25,
@@ -56,7 +56,7 @@ export const products = [
   {
     "_id": "5",
     "title": "Jasminum sambac, Mogra, Arabian Jasmine - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 913,
     "discount": 25,
@@ -68,7 +68,7 @@ export const products = [
   {
     "_id": "6",
     "title": "Top 3 Mosquito Repellent Plants",
-    "categoryName": "Mosquito Repellent",
+    "categoryName": "Combo",
     "season": "Rainy",
     "rating": 21,
     "discount": 20,
@@ -80,7 +80,7 @@ export const products = [
   {
     "_id": "7",
     "title": "Parijat Tree, Parijatak, Night Flowering Jasmine - Plant",
-    "categoryName": "Flowering Tree",
+    "categoryName": "Flowering",
     "season": "Monsoon",
     "rating": 813,
     "discount": 18,
@@ -92,7 +92,7 @@ export const products = [
   {
     "_id": "8",
     "title": "Top 5 Plants for Decoration on Auspicious Occasion",
-    "categoryName": "Auspicious Plants",
+    "categoryName": "Combo",
     "season": "AllTime",
     "rating": 26,
     "discount": 30,
@@ -104,7 +104,7 @@ export const products = [
   {
     "_id": "9",
     "title": "Miniature Rose, Button Rose (Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 311,
     "discount": 25,
@@ -116,7 +116,7 @@ export const products = [
   {
     "_id": "10",
     "title": "Top 5 Plants to Bring Goodluck",
-    "categoryName": "Good Luck Plants",
+    "categoryName": "Combo",
     "season": "AllTime",
     "rating": 25,
     "discount": 30,
@@ -128,7 +128,7 @@ export const products = [
   {
     "_id": "11",
     "title": "Jasminum sambac, Mogra, Arabian Jasmine Plant in 5 inch Pot",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 196,
     "discount": 17,
@@ -140,7 +140,7 @@ export const products = [
   {
     "_id": "12",
     "title": "Top 5 Shade Tolerant Indoor Plants for Home",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Combo",
     "season": "AllTime",
     "rating": 23,
     "discount": 27,
@@ -152,7 +152,7 @@ export const products = [
   {
     "_id": "13",
     "title": "Damascus Rose, Scented Rose (Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 772,
     "discount": 25,
@@ -164,7 +164,7 @@ export const products = [
   {
     "_id": "14",
     "title": "Top 4 Plants to Bring Goodluck and Prosperity",
-    "categoryName": "Good Luck Plants",
+    "categoryName": "Combo",
     "season": "AllTime",
     "rating": 20,
     "discount": 25,
@@ -176,7 +176,7 @@ export const products = [
   {
     "_id": "15",
     "title": "Raat Ki Rani, Raat Rani, Night Blooming Jasmine - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 900,
     "discount": 25,
@@ -188,7 +188,7 @@ export const products = [
   {
     "_id": "16",
     "title": "Ixora (Pack of 3) - Plants",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 21,
     "discount": 20,
@@ -200,7 +200,7 @@ export const products = [
   {
     "_id": "17",
     "title": "Rose (Red) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 558,
     "discount": 25,
@@ -212,7 +212,7 @@ export const products = [
   {
     "_id": "18",
     "title": "Hydrangea macrophylla (Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 238,
     "discount": 18,
@@ -224,7 +224,7 @@ export const products = [
   {
     "_id": "19",
     "title": "Chlorophytum, Spider Plant - Plant",
-    "categoryName": "Air Purifier",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 710,
     "discount": 26,
@@ -236,7 +236,7 @@ export const products = [
   {
     "_id": "20",
     "title": "Rajnigandha, Tuberose - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 619,
     "discount": 17,
@@ -248,7 +248,7 @@ export const products = [
   {
     "_id": "21",
     "title": "Pack of 3 Good Luck Jade Plants in Ceramic Pots",
-    "categoryName": "Good Luck Plants",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 249,
     "discount": 22,
@@ -260,7 +260,7 @@ export const products = [
   {
     "_id": "22",
     "title": "2 Layer Lucky Bamboo Plant in a Bowl with Pebbles",
-    "categoryName": "Good Luck Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 719,
     "discount": 26,
@@ -272,7 +272,7 @@ export const products = [
   {
     "_id": "23",
     "title": "Insulin Plant, Costus igneus - Plant",
-    "categoryName": "Medicinal Plant",
+    "categoryName": "Medicinal",
     "season": "AllTime",
     "rating": 704,
     "discount": 26,
@@ -284,7 +284,7 @@ export const products = [
   {
     "_id": "24",
     "title": "Areca Palm (Small) - Plant",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 277,
     "discount": 20,
@@ -296,7 +296,7 @@ export const products = [
   {
     "_id": "25",
     "title": "Curtain creeper, Vernonia creeper, Parda bel - Plant",
-    "categoryName": "Creeper Plant",
+    "categoryName": "Outdoor",
     "season": "AllTime",
     "rating": 539,
     "discount": 26,
@@ -308,7 +308,7 @@ export const products = [
   {
     "_id": "26",
     "title": "Scented rose (Any Variety, Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 241,
     "discount": 25,
@@ -320,7 +320,7 @@ export const products = [
   {
     "_id": "27",
     "title": "Nimboo, Lemon Tree - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "AllTime",
     "rating": 703,
     "discount": 17,
@@ -332,7 +332,7 @@ export const products = [
   {
     "_id": "28",
     "title": "Areca Palm - Plant",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 709,
     "discount": 17,
@@ -344,7 +344,7 @@ export const products = [
   {
     "_id": "29",
     "title": "Anthurium (Pink) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 294,
     "discount": 15,
@@ -356,7 +356,7 @@ export const products = [
   {
     "_id": "30",
     "title": "Pomegranate, Annar, Anar - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "Winter",
     "rating": 507,
     "discount": 18,
@@ -368,7 +368,7 @@ export const products = [
   {
     "_id": "31",
     "title": "Rose (Yellow) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 521,
     "discount": 25,
@@ -380,7 +380,7 @@ export const products = [
   {
     "_id": "32",
     "title": "Zamioculcas zamiifolia, ZZ Plant - Plant",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 244,
     "discount": 26,
@@ -392,7 +392,7 @@ export const products = [
   {
     "_id": "33",
     "title": "Zephyranthes Grandiflora, Rain Lily (Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Rainy",
     "rating": 178,
     "discount": 17,
@@ -404,7 +404,7 @@ export const products = [
   {
     "_id": "34",
     "title": "Origanum Majorana, Marjoram, Marwa - Plant",
-    "categoryName": "Herb Plant",
+    "categoryName": "Medicinal",
     "season": "Winter",
     "rating": 431,
     "discount": 20,
@@ -416,7 +416,7 @@ export const products = [
   {
     "_id": "35",
     "title": "Portulaca, 10 O Clock (Sunrise) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 271,
     "discount": 17,
@@ -428,7 +428,7 @@ export const products = [
   {
     "_id": "36",
     "title": "Graptoveria opalina - Succulent Plant",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 329,
     "discount": 26,
@@ -440,7 +440,7 @@ export const products = [
   {
     "_id": "37",
     "title": "Kamini - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 290,
     "discount": 17,
@@ -452,7 +452,7 @@ export const products = [
   {
     "_id": "38",
     "title": "Cuphea Hyssopifolia (Lavender) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 405,
     "discount": 25,
@@ -464,7 +464,7 @@ export const products = [
   {
     "_id": "39",
     "title": "Shevanti, Chrysanthemum (Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 232,
     "discount": 25,
@@ -476,7 +476,7 @@ export const products = [
   {
     "_id": "40",
     "title": "Aglaonema siam aurora, Aglaonema lipstick - Plant",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 251,
     "discount": 25,
@@ -488,7 +488,7 @@ export const products = [
   {
     "_id": "41",
     "title": "Money Plant Marble Queen - Plant",
-    "categoryName": "Money Plant",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 364,
     "discount": 17,
@@ -500,7 +500,7 @@ export const products = [
   {
     "_id": "42",
     "title": "Rose (Pink) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 372,
     "discount": 25,
@@ -512,7 +512,7 @@ export const products = [
   {
     "_id": "43",
     "title": "5 Lucky Bamboo Stalks (A Symbol of Positive Energy) - Gift Plant",
-    "categoryName": "Good Luck Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 197,
     "discount": 26,
@@ -524,7 +524,7 @@ export const products = [
   {
     "_id": "44",
     "title": "Miniature Rose, Button Rose (White) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 322,
     "discount": 25,
@@ -536,7 +536,7 @@ export const products = [
   {
     "_id": "45",
     "title": "Shevanti, Chrysanthemum (Pink) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 283,
     "discount": 11,
@@ -548,7 +548,7 @@ export const products = [
   {
     "_id": "46",
     "title": "Monstera obliqua - Plant",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 231,
     "discount": 26,
@@ -560,7 +560,7 @@ export const products = [
   {
     "_id": "47",
     "title": "Peperomia Magnoliifolia - Succulent Plant",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 252,
     "discount": 17,
@@ -572,7 +572,7 @@ export const products = [
   {
     "_id": "48",
     "title": "Drumsticks, Moringa Oleifera - Plant",
-    "categoryName": "Vegetable Plant",
+    "categoryName": "Medicinal",
     "season": "AllTime",
     "rating": 192,
     "discount": 25,
@@ -584,7 +584,7 @@ export const products = [
   {
     "_id": "49",
     "title": "Garlic Creeper, Mansoa Alliacea - Plant",
-    "categoryName": "Creeper Plant",
+    "categoryName": "Outdoor",
     "season": "AllTime",
     "rating": 520,
     "discount": 25,
@@ -596,7 +596,7 @@ export const products = [
   {
     "_id": "50",
     "title": "Yellow Bamboo - Plant",
-    "categoryName": "Bamboo Plant",
+    "categoryName": "Outdoor",
     "season": "AllTime",
     "rating": 318,
     "discount": 17,
@@ -608,7 +608,7 @@ export const products = [
   {
     "_id": "51",
     "title": "Sempervivum Green Wheel, Houseleek, Lakshmi Kamal - Succulent Plant",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 176,
     "discount": 18,
@@ -620,7 +620,7 @@ export const products = [
   {
     "_id": "52",
     "title": "Nimboo, Lemon Tree (Seedless) - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "AllTime",
     "rating": 433,
     "discount": 16,
@@ -632,7 +632,7 @@ export const products = [
   {
     "_id": "53",
     "title": "Cassia fistula, Golden shower Tree, Bahava - Plant",
-    "categoryName": "Flowering Tree",
+    "categoryName": "Outdoor",
     "season": "Summer",
     "rating": 346,
     "discount": 18,
@@ -644,7 +644,7 @@ export const products = [
   {
     "_id": "54",
     "title": "Banana - G9, Kela - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "AllTime",
     "rating": 376,
     "discount": 18,
@@ -656,7 +656,7 @@ export const products = [
   {
     "_id": "55",
     "title": "Pack of 6 Strawberry Saplings to Taste the Homegrown Magic",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "Winter",
     "rating": 85,
     "discount": 75,
@@ -668,7 +668,7 @@ export const products = [
   {
     "_id": "56",
     "title": "Neem Tree, Azadirachta indica - Plant",
-    "categoryName": "Medicinal Plant",
+    "categoryName": "Medicinal",
     "season": "AllTime",
     "rating": 359,
     "discount": 25,
@@ -680,7 +680,7 @@ export const products = [
   {
     "_id": "57",
     "title": "Hibiscus, Gudhal Flower (Orange) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 275,
     "discount": 25,
@@ -692,7 +692,7 @@ export const products = [
   {
     "_id": "58",
     "title": "Top 3 Beautiful Shevanti Flowers of the Season",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Combo",
     "season": "Winter",
     "rating": 103,
     "discount": 15,
@@ -704,7 +704,7 @@ export const products = [
   {
     "_id": "59",
     "title": "Ashwagandha - Plant",
-    "categoryName": "Medicinal Plant",
+    "categoryName": "Medicinal",
     "season": "AllTime",
     "rating": 553,
     "discount": 11,
@@ -716,7 +716,7 @@ export const products = [
   {
     "_id": "60",
     "title": "Coleus (Pink) - Plant",
-    "categoryName": "Ornamental Plant",
+    "categoryName": "Outdoor",
     "season": "AllTime",
     "rating": 223,
     "discount": 17,
@@ -728,7 +728,7 @@ export const products = [
   {
     "_id": "61",
     "title": "Ornamental Orange Fruit (Green Leaves) - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "AllTime",
     "rating": 432,
     "discount": 17,
@@ -740,7 +740,7 @@ export const products = [
   {
     "_id": "62",
     "title": "Philodendron Scandens Oxycardium, Heart-Leaf Philodendron - Plant",
-    "categoryName": "Indoor Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 212,
     "discount": 26,
@@ -752,7 +752,7 @@ export const products = [
   {
     "_id": "63",
     "title": "Ixora Mini Dwarf (Pink) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 351,
     "discount": 26,
@@ -764,7 +764,7 @@ export const products = [
   {
     "_id": "64",
     "title": "Gerbera (Red) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 325,
     "discount": 25,
@@ -776,7 +776,7 @@ export const products = [
   {
     "_id": "65",
     "title": "Mango Tree (Kesar, Grafted) - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "Summer",
     "rating": 350,
     "discount": 14,
@@ -788,7 +788,7 @@ export const products = [
   {
     "_id": "66",
     "title": "Kalanchoe (Red) - Plant",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 283,
     "discount": 16,
@@ -800,7 +800,7 @@ export const products = [
   {
     "_id": "67",
     "title": "2 Lucky Bamboo Stalks (A Symbol of Love) - Gift Plant",
-    "categoryName": "Good Luck Plants",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 196,
     "discount": 26,
@@ -812,7 +812,7 @@ export const products = [
   {
     "_id": "68",
     "title": "Bougainvillea (Yellow) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "AllTime",
     "rating": 250,
     "discount": 18,
@@ -824,7 +824,7 @@ export const products = [
   {
     "_id": "69",
     "title": "Set of 3 Bonsai looking Adenium Plants",
-    "categoryName": "Bonsai Plant",
+    "categoryName": "Outdoor",
     "season": "AllTime",
     "rating": 222,
     "discount": 33,
@@ -836,7 +836,7 @@ export const products = [
   {
     "_id": "70",
     "title": "Geranium (Any Color) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Winter",
     "rating": 247,
     "discount": 25,
@@ -848,7 +848,7 @@ export const products = [
   {
     "_id": "71",
     "title": "Mandevilla (Red) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 239,
     "discount": 12,
@@ -860,7 +860,7 @@ export const products = [
   {
     "_id": "72",
     "title": "Set of 4 Mixed Succulent Plants (assorted) Pack",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 116,
     "discount": 14,
@@ -872,7 +872,7 @@ export const products = [
   {
     "_id": "73",
     "title": "Graptopetalum macdougallii, Laxmi Kamal, Lakshmi Kamal - Succulent Plant",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 213,
     "discount": 14,
@@ -884,7 +884,7 @@ export const products = [
   {
     "_id": "74",
     "title": "Chikoo, Sapota, Chiku Fruit (Grafted) - Plant",
-    "categoryName": "Fruit Plant",
+    "categoryName": "Fruit",
     "season": "AllTime",
     "rating": 310,
     "discount": 17,
@@ -896,7 +896,7 @@ export const products = [
   {
     "_id": "75",
     "title": "Peperomia obtusifolia - Succulent Plant",
-    "categoryName": "Succulent Plant",
+    "categoryName": "Succulent",
     "season": "AllTime",
     "rating": 246,
     "discount": 20,
@@ -908,7 +908,7 @@ export const products = [
   {
     "_id": "76",
     "title": "Coleus (Green Pink) - Plant",
-    "categoryName": "Ornamental Plant",
+    "categoryName": "Outdoor",
     "season": "AllTime",
     "rating": 215,
     "discount": 17,
@@ -920,7 +920,7 @@ export const products = [
   {
     "_id": "77",
     "title": "Sansevieria trifasciata, Snake Plant (var. laurentii) - Plant",
-    "categoryName": "Air Purifier",
+    "categoryName": "Indoor",
     "season": "AllTime",
     "rating": 220,
     "discount": 17,
@@ -932,7 +932,7 @@ export const products = [
   {
     "_id": "78",
     "title": "Passiflora Sherry (Red) - Plant",
-    "categoryName": "Flowering Plant",
+    "categoryName": "Flowering",
     "season": "Summer",
     "rating": 418,
     "discount": 18,

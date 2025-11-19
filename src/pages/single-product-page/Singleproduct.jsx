@@ -1,10 +1,10 @@
 import { Filter, SingleProduct } from "../../components";
-import { useData } from "../../contexts";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export default function SingleProductPage() {
   const { productId } = useParams();
-  const { filtered } = useData();
+  const { filtered } = useSelector((state) => state.data);
   return (
     <div className="grid-container-product">
       <div className="filter-grid">

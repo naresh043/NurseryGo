@@ -3,9 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "../../hooks";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../redux/slices/authSlice";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordValue, setPasswordvalue] = useState();
@@ -27,6 +30,7 @@ export default function Signup() {
           "token",
           JSON.stringify(response.data.encodedToken)
         );
+        dispatch(setToken(true));
         successToast("Signup Successful...");
         navigate("/login");
       }

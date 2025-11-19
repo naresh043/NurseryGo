@@ -1,7 +1,9 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth, useData, useTheme } from "../../contexts";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../../redux/slices/themeSlice";
+import { logout } from "../../redux/slices/authSlice";
 import { Filter } from "..";
 import { useState } from "react";
 import { Toast } from "../Toast/Toast";
@@ -9,17 +11,17 @@ import { Toast } from "../Toast/Toast";
 export default function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { theme, toggle } = useTheme();
-  const { data, dispatch, searchProducts } = useData();
-  const { token, setToken } = useAuth();
+  const theme = useSelector((state) => state.theme.theme);
+  const data = useSelector((state) => state.data);
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
   const [showData, setShowData] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
 
   const logoutHandler = () => {
     localStorage.clear();
-    setToken(false);
+    dispatch(logout());
     navigate("/");
-    dispatch({ type: "LOGOUT" });
   };
 
   const debounce = (cb) => {
@@ -30,7 +32,9 @@ export default function Navigation() {
     };
   };
 
-  const process = debounce((query) => searchProducts(query));
+  const process = debounce((query) => {
+    // TODO: Implement search functionality with Redux
+  });
 
   return (
     <>
@@ -102,7 +106,7 @@ export default function Navigation() {
                     ? "fas fa-moon nav-icon"
                     : "fas fa-sun nav-icon"
                 }
-                onClick={() => toggle()}
+                onClick={() => dispatch(toggleTheme())}
               ></i>
             </span>
           </li>
@@ -185,7 +189,7 @@ export default function Navigation() {
                     ? "fas fa-moon nav-icon"
                     : "fas fa-sun nav-icon"
                 }
-                onClick={() => toggle()}
+                onClick={() => dispatch(toggleTheme())}
               ></i>
             </span>
           </li>

@@ -1,7 +1,8 @@
 import "./authentication.css";
 import { getCredentials, getTestData } from "../../utils";
 import axios from "axios";
-import { useAuth } from "../../contexts";
+import { useDispatch } from "react-redux";
+import { setToken, setUserData } from "../../redux/slices/authSlice";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "../../hooks";
@@ -9,7 +10,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Login() {
   const location = useLocation();
-  const { setToken, setUserData } = useAuth();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const { errorToast, successToast } = useToast();
@@ -23,8 +24,8 @@ export default function Login() {
           JSON.stringify(response.data.encodedToken)
         );
         localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-        setUserData(response.data.foundUser);
-        setToken(true);
+        dispatch(setUserData(response.data.foundUser));
+        dispatch(setToken(true));
         successToast("Welcome to FreshBuy...");
         navigate(location?.state?.from?.pathname || "/");
       }
@@ -48,7 +49,7 @@ export default function Login() {
           "login",
           JSON.stringify(response.data.encodedToken)
         );
-        setToken(true);
+        dispatch(setToken(true));
         successToast("Welcome to FreshBuy...");
         navigate(location?.state?.from?.pathname || "/");
       }

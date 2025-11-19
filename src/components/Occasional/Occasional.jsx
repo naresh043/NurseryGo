@@ -1,8 +1,8 @@
-import "./occasional.css"
+import "./occasional.css";
 import { Link } from "react-router-dom";
-import { useData } from "../../contexts";
+import { useDispatch } from "react-redux";
 export default function Occasional() {
-  const { dispatch } = useData();
+  const dispatch = useDispatch();
   return (
     <div className="occasional-products">
       <h1 className="occasional-heading">Special Categories</h1>

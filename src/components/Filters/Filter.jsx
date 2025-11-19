@@ -1,126 +1,95 @@
 import "./filter.css";
-import { useData } from "../../contexts";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setPrice,
+  setRating,
+  setSortBy,
+  setCategoryFilter,
+  setSeasonalFilter,
+  clearFilters,
+} from "../../redux/slices/dataSlice";
 
 export default function Filter() {
-  const { data, dispatch } = useData();
+  const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
 
   return (
     <div className="filter-section">
+      {/* HEADINGS */}
       <section className="filter-headings">
         <p className="text-lg text-bold">Filters</p>
         <button
           className="btn btn-solid-primary clear-filter"
-          onClick={() => dispatch({ type: "CLEAR" })}
+          onClick={() => dispatch(clearFilters())}
         >
           Clear
         </button>
       </section>
+
+      {/* PRICE */}
       <p className="text-md text-bold">Price</p>
       <div className="range-slider">
         <input
           type="range"
-          min="0"
-          max="200"
+          min="199"
+          max="1500"
           step="20"
           value={data.price}
-          onChange={(e) => dispatch({ type: "PRICE", payload: e.target.value })}
+          onChange={(e) => dispatch(setPrice(e.target.value))}
         />
-        <i className="fa fa-inr margin-l text-sm">.</i>
         <span className="range-value text-md text-bold">{data.price}</span>
       </div>
+
+      {/* CATEGORIES */}
       <p className="text-md text-bold">Categories</p>
-      {data.categories.map((item) => {
-        let category = item.categoryName.toLowerCase();
+      {data?.categories.map((item) => {
+        const category = item.categoryName.toLowerCase();
         return (
           <label className="text-md" key={item._id}>
             <input
               type="checkbox"
-              name="category"
-              className="margin-r"
-              checked={data[category] === true}
-              onChange={() =>
-                dispatch({ type: item.categoryName.toUpperCase() })
-              }
+              checked={data.selectedCategories.includes(category)}
+              onChange={() => dispatch(setCategoryFilter(category))}
             />
             {item.categoryName}
           </label>
         );
       })}
+
+      {/* SEASONAL */}
       <p className="text-md text-bold">Seasonal</p>
-      <label className="text-md">
-        <input
-          type="checkbox"
-          name="seasonal"
-          className="margin-r"
-          checked={data.alltime === true}
-          onChange={() => dispatch({ type: "ALLTIME" })}
-        />
-        All Time
-      </label>
-      <label className="text-md">
-        <input
-          type="checkbox"
-          name="seasonal"
-          className="margin-r"
-          checked={data.summer === true}
-          onChange={() => dispatch({ type: "SUMMER" })}
-        />
-        Summer
-      </label>
-      <label className="text-md">
-        <input
-          type="checkbox"
-          name="seasonal"
-          className="margin-r"
-          checked={data.winter === true}
-          onChange={() => dispatch({ type: "WINTER" })}
-        />
-        Winter
-      </label>
+      {["alltime", "summer", "winter"].map((season) => (
+        <label key={season} className="text-md">
+          <input
+            type="radio"
+            name="seasonal"
+            checked={data.seasonalFilter === season}
+            onChange={() => dispatch(setSeasonalFilter(season))}
+          />
+          {season.toUpperCase()}
+        </label>
+      ))}
+
+      {/* RATINGS */}
       <p className="text-md text-bold">Ratings</p>
-      <label className="text-md">
-        <input
-          type="radio"
-          name="rating"
-          className="margin-r"
-          onClick={() => dispatch({ type: "RATING", payload: 4 })}
-        />
-        4 Stars & above
-      </label>
-      <label className="text-md">
-        <input
-          type="radio"
-          name="rating"
-          className="margin-r"
-          onClick={() => dispatch({ type: "RATING", payload: 3 })}
-        />
-        3 Stars & above
-      </label>
-      <label className="text-md">
-        <input
-          type="radio"
-          name="rating"
-          className="margin-r"
-          onClick={() => dispatch({ type: "RATING", payload: 2 })}
-        />
-        2 Stars & above
-      </label>
-      <label className="text-md">
-        <input
-          type="radio"
-          name="rating"
-          className="margin-r"
-          onClick={() => dispatch({ type: "RATING", payload: 1 })}
-        />
-        1 Star & above
-      </label>
+      {[4, 3, 2, 1].map((rate) => (
+        <label key={rate} className="text-md">
+          <input
+            type="radio"
+            name="rating"
+            onClick={() => dispatch(setRating(rate))}
+          />
+          {rate} Stars & above
+        </label>
+      ))}
+
+      {/* SORT */}
       <p className="text-md text-bold">Sort By</p>
       <label className="text-md">
         <input
           type="radio"
           name="sort"
-          className="margin-r"
-          onClick={() => dispatch({ type: "SORT" })}
+          onClick={() => dispatch(setSortBy("POPULARITY"))}
         />
         Popularity
       </label>
@@ -128,8 +97,7 @@ export default function Filter() {
         <input
           type="radio"
           name="sort"
-          className="margin-r"
-          onClick={() => dispatch({ type: "SORT", payload: "LOW_TO_HIGH" })}
+          onClick={() => dispatch(setSortBy("LOW_TO_HIGH"))}
         />
         Price Low-High
       </label>
@@ -137,8 +105,7 @@ export default function Filter() {
         <input
           type="radio"
           name="sort"
-          className="margin-r"
-          onChange={() => dispatch({ type: "SORT", payload: "HIGH_TO_LOW" })}
+          onClick={() => dispatch(setSortBy("HIGH_TO_LOW"))}
         />
         Price High-Low
       </label>

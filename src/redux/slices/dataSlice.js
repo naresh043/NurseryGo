@@ -4,11 +4,9 @@ import {
   getCategories,
   getProducts,
   getWishlist,
-  addWishlist,
-  addCartlist,
 } from "../../services";
 
-// --------------- API CALLS (ASYNC LOGIC) ----------------
+// --------------- API CALLS ----------------
 export const loadInitialData = createAsyncThunk(
   "data/loadInitialData",
   async (token, { dispatch }) => {
@@ -28,7 +26,7 @@ export const loadInitialData = createAsyncThunk(
   }
 );
 
-// ---------------- SLICE -----------------
+// ---------------- REDUX SLICE -----------------
 const dataSlice = createSlice({
   name: "data",
   initialState: {
@@ -36,26 +34,71 @@ const dataSlice = createSlice({
     cart: [],
     wishlist: [],
     categories: [],
-    price: 200,
+    selectedCategories: [], // category filter
+    seasonalFilter: null, // 'alltime' | 'summer' | 'winter'
+    price: 1500,
     rating: 0,
     sortBy: null,
     loading: false,
     searched: [],
   },
+
   reducers: {
-    setProducts: (state, action) => { state.products = action.payload },
-    setCategories: (state, action) => { state.categories = action.payload },
-    setCart: (state, action) => { state.cart = action.payload },
-    setWishlist: (state, action) => { state.wishlist = action.payload },
-    setPrice: (state, action) => { state.price = action.payload },
-    setRating: (state, action) => { state.rating = action.payload },
-    setSortBy: (state, action) => { state.sortBy = action.payload },
+    setProducts: (state, action) => {
+      state.products = action.payload;
+    },
+    setCategories: (state, action) => {
+      state.categories = action.payload;
+    },
+
+    // CATEGORY FILTER (toggle)
+    setCategoryFilter: (state, action) => {
+      const category = action.payload;
+      if (state.selectedCategories.includes(category)) {
+        state.selectedCategories = state.selectedCategories.filter(
+          (c) => c !== category
+        );
+      } else {
+        state.selectedCategories.push(category);
+      }
+    },
+
+    // SEASONAL FILTER (single select)
+    setSeasonalFilter: (state, action) => {
+      state.seasonalFilter = action.payload; // 'alltime' | 'summer' | 'winter'
+    },
+
+    setCart: (state, action) => {
+      state.cart = action.payload;
+    },
+    setWishlist: (state, action) => {
+      state.wishlist = action.payload;
+    },
+    setPrice: (state, action) => {
+      state.price = Number(action.payload); // Make sure price is a number
+    },
+    setRating: (state, action) => {
+      state.rating = action.payload;
+    },
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload;
+    },
+
+    // SET SELECTED CATEGORIES (for category click)
+    setSelectedCategories: (state, action) => {
+      state.selectedCategories = action.payload;
+    },
+
+    // RESET ALL FILTERS
     clearFilters: (state) => {
-      state.price = 200;
+      state.price = 1500;
       state.rating = 0;
       state.sortBy = null;
+      state.selectedCategories = [];
+      state.seasonalFilter = null;
     },
   },
+
   extraReducers: (builder) => {
     builder.addCase(loadInitialData.pending, (state) => {
       state.loading = true;
@@ -66,9 +109,20 @@ const dataSlice = createSlice({
   },
 });
 
+// ---------- EXPORT ACTIONS ----------
 export const {
-  setProducts, setCategories, setCart, setWishlist,
-  setPrice, setRating, setSortBy, clearFilters
+  setProducts,
+  setCategories,
+  setCart,
+  setWishlist,
+  setPrice,
+  setRating,
+  setSortBy,
+  setCategoryFilter,
+  setSeasonalFilter,
+  setSelectedCategories,
+  clearFilters,
 } = dataSlice.actions;
 
+// ---------- EXPORT REDUCER ----------
 export default dataSlice.reducer;

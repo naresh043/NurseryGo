@@ -27,6 +27,7 @@ import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
 
 export function makeServer({ environment = "development" } = {}) {
+  
   return new Server({
     serializers: {
       application: RestSerializer,

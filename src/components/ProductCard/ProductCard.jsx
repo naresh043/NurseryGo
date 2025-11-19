@@ -1,11 +1,11 @@
 import "./productcard.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useData } from "../../contexts";
+import { useSelector } from "react-redux";
 import { useUserActions, useToast } from "../../hooks";
 
 const ProductCard = ({ product }) => {
   const location = useLocation();
-  const { data } = useData();
+  const data = useSelector((state) => state.data);
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
   const { addWish, deleteWish, addCart } = useUserActions();

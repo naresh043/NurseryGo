@@ -7,17 +7,19 @@ import {
   deleteWishlist,
   deleteCartlist,
 } from "../../src/services";
-import { useData } from "../contexts";
+import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
 
 export const useUserActions = () => {
-  const { dispatch, setLoading, setLoadText } = useData();
+  const dispatch = useDispatch();
+  const { setLoading, setLoadText } = useSelector((state) => state.data);
+  console.log(setLoading)
   const { successToast } = useToast();
   const token = localStorage.getItem("login");
 
   async function addWish(product) {
-    setLoading(true);
-    setLoadText("Adding...");
+    // setLoading(true);
+    // setLoadText("Adding...");
     const responseWishlist = await getWishlist({ encodedToken: token });
     if (
       !responseWishlist.data.wishlist.find((item) => item._id === product._id)
@@ -25,14 +27,14 @@ export const useUserActions = () => {
       const res = await addWishlist({ product: product, encodedToken: token });
       dispatch({ type: "LOAD_WISHLIST", payload: res.data.wishlist });
     }
-    setLoadText("");
-    setLoading(false);
+    // setLoadText("");
+    // setLoading(false);
     successToast(`${product.title} added to Wishlist...`);
   }
 
   async function deleteWish(productid) {
     setLoading(true);
-    setLoadText("Removing...");
+    // setLoadText("Removing...");
     const responseWishlist = await deleteWishlist({
       productId: productid,
       encodedToken: token,

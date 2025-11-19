@@ -1,11 +1,13 @@
 import "./cart.css";
 import { useNavigate } from "react-router-dom";
-import { useData } from "../../contexts";
+import { useSelector, useDispatch } from "react-redux";
 import { useUserActions } from "../../hooks";
 import { Loader } from "../../components";
 export default function Cart() {
   const navigate = useNavigate();
-  const { data, dispatch, loading, loadText } = useData();
+  const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+  const { loading, loadText } = data;
   const { addWish, deleteCart, incrementCart, decrementCart } =
     useUserActions();
   let cartPrice = 0;
