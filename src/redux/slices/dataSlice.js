@@ -124,6 +124,12 @@ const dataSlice = createSlice({
     setLoadText: (state, action) => {
       state.loadText = action.payload;
     },
+    setSearchedProducts: (state, action) => {
+      const query = action.payload.toLowerCase();
+      state.searched = state.products.filter((item) =>
+        item.title.toLowerCase().includes(query)
+      );
+    },
   },
 
   extraReducers: (builder) => {
@@ -184,6 +190,7 @@ export const {
   clearFilters,
   setLoading,
   setLoadText,
+  setSearchedProducts,
 } = dataSlice.actions;
 
 // ---------- EXPORT REDUCER ----------

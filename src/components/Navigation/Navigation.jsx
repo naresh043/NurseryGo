@@ -2,6 +2,7 @@ import "./navigation.css";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { setSearchedProducts } from "../../redux/slices/dataSlice";
 import { toggleTheme } from "../../redux/slices/themeSlice";
 import { logout } from "../../redux/slices/authSlice";
 import { Filter } from "..";
@@ -33,7 +34,8 @@ export default function Navigation() {
   };
 
   const process = debounce((query) => {
-    // TODO: Implement search functionality with Redux
+    dispatch(setSearchedProducts(query));
+    navigate("/productlist");
   });
 
   return (
