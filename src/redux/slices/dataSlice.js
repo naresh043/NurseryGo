@@ -60,8 +60,37 @@ const dataSlice = createSlice({
   initialState: {
     products: [],
     cart: [],
+    checkoutCart: [],
     wishlist: [],
     categories: [],
+    address: [
+      {
+        _id: "1UIDNA567ABC",
+        name: "Naresh",
+        building: "123, Gandhi Street",
+        city: "Tirupati",
+        state: "Andhra Pradesh",
+        country: "India",
+        pincode: "517501",
+        phone: "9876543210",
+      },
+      {
+        _id: "2XYZPQ981XYZ",
+        name: "John Doe",
+        building: "45, MG Road",
+        city: "Bangalore",
+        state: "Karnataka",
+        country: "India",
+        pincode: "560001",
+        phone: "9001234567",
+      },
+    ],
+    cartPriceDetails: {
+      price: 0,
+      discount: 0,
+      deliveryCharge: 0,
+      total: 0,
+    },
     selectedCategories: [],
     seasonalFilter: null,
     price: 1500,
@@ -81,6 +110,12 @@ const dataSlice = createSlice({
     },
     setCart: (state, action) => {
       state.cart = action.payload;
+    },
+    setCartPriceDetails: (state, action) => {
+      state.cartPriceDetails = action.payload;
+    },
+    setCheckoutCart: (state, action) => {
+      state.checkoutCart = action.payload;
     },
     setWishlist: (state, action) => {
       state.wishlist = action.payload;
@@ -180,6 +215,8 @@ export const {
   setProducts,
   setCategories,
   setCart,
+  setCheckoutCart,
+  setCartPriceDetails,
   setWishlist,
   setPrice,
   setRating,

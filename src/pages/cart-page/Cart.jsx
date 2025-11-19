@@ -3,16 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useUserActions } from "../../hooks";
 import { Loader } from "../../components";
+import { setCartPriceDetails, setCheckoutCart } from "../../redux/slices/dataSlice"; // 👈 FIXED IMPORT
+
 export default function Cart() {
   const navigate = useNavigate();
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const { loading, loadText } = data;
-  const { addWish, deleteCart, incrementCart, decrementCart } =
-    useUserActions();
-  let cartPrice = 0;
-  let cartDiscount = 0;
-  let cartQty = 0;
+  const { addWish, deleteCart, incrementCart, decrementCart } = useUserActions();
+
+  // 🧮 CALCULATIONS (Done before return)
+  const cartPrice = data.cart.reduce((acc, item) => acc + item.qty * item.price, 0);
+  const cartDiscount = data.cart.reduce(
+    (acc, item) => acc + item.qty * ((item.price * item.discount) / 100),
+    0
+  );
+  const cartQty = data.cart.reduce((acc, item) => acc + item.qty, 0);
+  const deliveryCharge = data.cart.length * 15;
+  const totalAmount = cartPrice + deliveryCharge;
 
   return loading ? (
     <Loader text={loadText} />
@@ -21,118 +29,101 @@ export default function Cart() {
       {data.cart.length > 0 ? (
         <div className="grid-container cart-container">
           <p className="product-page-heading text-lg text-bold">
-            MY BASKET({" "}
+            MY BASKET (
             <span className="no-items-in-cart">{data.cart.length}</span> )
           </p>
+
           <div className="cart-products">
+            {/* 🧺 CART ITEMS */}
             <section className="cart-items">
-              {data.cart.map((item) => {
-                return (
-                  <div className="card-container horizontal" key={item._id}>
-                    <div className="card-img horizontal-img border-right">
-                      <img src={item.image} alt="Apple" />
-                    </div>
-                    <div className="card-details card-details-horizontal">
-                      <h2 className="card-heading">
-                        {item.title}
-                        <span>
-                          <i
-                            className="far fa-heart"
-                            onClick={() => {
-                              addWish(item);
-                              deleteCart(item._id);
-                            }}
-                          ></i>
-                        </span>
-                      </h2>
-                      <div className="rating text-sm">
-                        <span className="rating-value">
-                          {item.rating}
-                          <i className="fa fa-star checked margin-l"></i>
-                        </span>
-                        (<span className="rating-number">2333</span>)
-                      </div>
-                      <h4 className="product-price">
-                        Rs.{item.price}/kg{" "}
-                        <span className="original-price text-strike-through">
-                          Rs.
-                          {(item.price * (1 + item.discount / 100)).toFixed(0)}
-                        </span>
-                        <span className="discount-percentage">
-                          {item.discount}% off
-                        </span>
-                      </h4>
-                      <span className="qty-scale text-md">
-                        Quantity:
-                        <button
-                          className={`dec ${
-                            item.qty <= 1 ? `disable` : undefined
-                          }`}
-                          onClick={() => decrementCart(item)}
-                        >
-                          -
-                        </button>
-                        <div className="count">{item.qty}</div>
-                        <button
-                          className="inc"
-                          onClick={() => incrementCart(item)}
-                        >
-                          +
-                        </button>
-                      </span>
-                      <button
-                        className="btn btn-outline-primary"
-                        onClick={() => deleteCart(item._id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
+              {data.cart.map((item) => (
+                <div className="card-container horizontal" key={item._id}>
+                  <div className="card-img horizontal-img border-right">
+                    <img src={item.image} alt={item.title} />
                   </div>
-                );
-              })}
+
+                  <div className="card-details card-details-horizontal">
+                    <h2 className="card-heading">
+                      {item.title}
+                      <span>
+                        <i
+                          className="far fa-heart"
+                          onClick={() => {
+                            addWish(item);
+                            deleteCart(item._id);
+                          }}
+                        ></i>
+                      </span>
+                    </h2>
+
+                    <div className="rating text-sm">
+                      <span className="rating-value">
+                        {item.rating}
+                        <i className="fa fa-star checked margin-l"></i>
+                      </span>
+                    </div>
+
+                    <h4 className="product-price">
+                      Rs.{item.price}/kg{" "}
+                      <span className="original-price text-strike-through">
+                        Rs.{(item.price * (1 + item.discount / 100)).toFixed(0)}
+                      </span>
+                      <span className="discount-percentage">
+                        {item.discount}% off
+                      </span>
+                    </h4>
+
+                    <span className="qty-scale text-md">
+                      Quantity:
+                      <button
+                        className={`dec ${item.qty <= 1 ? "disable" : ""}`}
+                        onClick={() => decrementCart(item)}
+                      >
+                        -
+                      </button>
+                      <div className="count">{item.qty}</div>
+                      <button className="inc" onClick={() => incrementCart(item)}>
+                        +
+                      </button>
+                    </span>
+
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() => deleteCart(item._id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
             </section>
 
-            {data.cart.forEach((item) => {
-              cartPrice = cartPrice + item.qty * item.price;
-              cartDiscount =
-                cartDiscount + item.qty * ((item.price * item.discount) / 100);
-              cartQty = cartQty + item.qty;
-            })}
-
+            {/* 💰 PRICE DETAILS */}
             <section className="item-data margin-t">
               <h3 className="text-md">Price Details</h3>
-              <hr></hr>
-              <p>
-                Price <span className="rate">Rs.{cartPrice}</span>
-              </p>
-              <p>
-                Discount <span className="rate">-Rs.{cartDiscount}</span>
-              </p>
-              <p>
-                Delivery Charge{" "}
-                <span className="rate">Rs.{data.cart.length * 15}</span>
-              </p>
-              <hr></hr>
+              <hr />
+              <p>Price <span className="rate">Rs.{cartPrice}</span></p>
+              <p>Discount <span className="rate">-Rs.{cartDiscount}</span></p>
+              <p>Delivery Charge <span className="rate">Rs.{deliveryCharge}</span></p>
+              <hr />
               <h3 className="text-md">
-                Total Amount{" "}
-                <span className="rate">
-                  Rs.{cartPrice + data.cart.length * 15}
-                </span>
+                Total Amount <span className="rate">Rs.{totalAmount}</span>
               </h3>
-              <hr></hr>
+              <hr />
               <p>You will save Rs.{cartDiscount} on this order</p>
+
               <button
                 className="btn btn-outline-primary margin-t"
                 onClick={() => {
-                  dispatch({
-                    type: "CART_PRICE",
-                    payload: {
+                  dispatch(
+                    setCartPriceDetails({
                       price: cartPrice,
                       discount: cartDiscount,
-                      deliveryCharge: data.cart.length * 15,
-                      total: cartPrice + data.cart.length * 15,
-                    },
-                  });
+                      deliveryCharge,
+                      total: totalAmount,
+                    })
+                  );
+                  dispatch(setCheckoutCart(data.cart)); // 👈 FIXED
                   navigate("/checkout");
                 }}
               >

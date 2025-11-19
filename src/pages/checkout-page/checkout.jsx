@@ -6,16 +6,18 @@ import { useToast } from "../../hooks";
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const data = useSelector((state) => state.data);
+  const { cart, cartPriceDetails, address } = useSelector(
+    (state) => state.data
+  );
   const dispatch = useDispatch();
   const { warningToast, successToast } = useToast();
   const [deliveryAddress, setDeliveryAddress] = useState();
 
   const doPayment = () => {
-    let options = {
+    const options = {
       key: "rzp_test_FKsgyFO1LyEuxU",
       key_secret: "B5IjUO1TmcjmfDw34KMI4f8X",
-      amount: data.cartPriceDetails.total * 100,
+      amount: cartPriceDetails.total * 100, // ✅ FIXED
       currency: "INR",
       name: "FreshBuy",
       description: "Thank you for choosing FreshBuy",
@@ -23,9 +25,9 @@ export default function Checkout() {
         dispatch({
           type: "LOAD_ORDERS",
           payload: {
-            items: data.cart,
+            items: cart,
             address: deliveryAddress,
-            totalAmount: data.cartPriceDetails.total,
+            totalAmount: cartPriceDetails.total,
             paymentId: response.razorpay_payment_id,
           },
         });
@@ -33,18 +35,13 @@ export default function Checkout() {
         navigate("/orders");
       },
       prefill: {
-        name: "Deekshith M D",
-        email: "deekshithmogra@gmail.com",
-        contact: "7975507889",
+        name: "Naresh",
+        email: "test@gmail.com",
+        contact: "9999999999",
       },
-      notes: {
-        address: "Razorpay Carporate Office",
-      },
-      theme: {
-        color: "#0bb32f",
-      },
+      theme: { color: "#0bb32f" },
     };
-    let pay = new window.Razorpay(options);
+    const pay = new window.Razorpay(options);
     pay.open();
   };
 
@@ -53,7 +50,7 @@ export default function Checkout() {
       <div className="address-container">
         <div className="all-address">
           <h1 className="text-center">Addresses</h1>
-          {data.address.map((addres) => {
+          {address?.map((addres) => {
             return (
               <label className="address-data current margin-b" key={addres._id}>
                 <input
@@ -86,11 +83,12 @@ export default function Checkout() {
           </div>
           <h3 className="text-md">Order Details</h3>
           <hr />
-          {data.cart.map((item) => {
+          {cart.map((item) => {
+            // FIXED
             return (
-              <div className="order-detail margin" key={item._id}>
-                <span className="text-md">{item.title}</span>
-                <span className="text-md">{item.qty}</span>
+              <div className="order-detail" key={item._id}>
+                <span>{item.title}</span>
+                <span>{item.qty}</span>
               </div>
             );
           })}
@@ -98,25 +96,25 @@ export default function Checkout() {
           <h3 className="text-md">Price Details</h3>
           <hr></hr>
           <p>
-            Price <span className="rate">Rs.{data.cartPriceDetails.price}</span>
+            Price <span className="rate">Rs.{cartPriceDetails.price}</span>
           </p>
           <p>
             Discount{" "}
-            <span className="rate">-Rs.{data.cartPriceDetails.discount}</span>
+            <span className="rate">-Rs.{cartPriceDetails.discount}</span>
           </p>
           <p>
             Delivery Charge{" "}
             <span className="rate">
-              Rs.{data.cartPriceDetails.deliveryCharge}
+              Rs.{cartPriceDetails.deliveryCharge}
             </span>
           </p>
           <hr />
           <h3 className="text-md">
             Total Amount{" "}
-            <span className="rate">Rs.{data.cartPriceDetails.total}</span>
+            <span className="rate">Rs.{cartPriceDetails.total}</span>
           </h3>
           <hr />
-          <p>You will save Rs.{data.cartPriceDetails.discount} on this order</p>
+          <p>You will save Rs.{cartPriceDetails.discount} on this order</p>
           <hr />
 
           {deliveryAddress ? (
