@@ -1,4 +1,4 @@
-.filter-section {
+/* .filter-section {
     grid-area: filter;
     position: sticky;
     top: 8rem;
@@ -11,6 +11,29 @@
     overflow-y: hidden;
     box-sizing: border-box;
     padding: 1rem 2rem;
+} */
+.filter-section {
+    grid-area: filter;
+    position: sticky;
+    top: 8rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: flex-start; /* don't stretch space */
+    max-height: 90vh; /* slightly smaller than viewport */
+    border-right: 2px solid var(--border-black);
+    overflow-y: auto; /* enable vertical scroll */
+    box-sizing: border-box;
+}
+
+/* optional: hide scrollbar in some browsers (smooth look) */
+.filter-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filter-section::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
 }
 
 .filter-headings {
@@ -36,3 +59,5 @@
         border:none
     }
 }
+
+
